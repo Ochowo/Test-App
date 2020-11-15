@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "heroku-postbuild": "npx sequelize-cli db:migrate"
+    "heroku-postbuild": "npx sequelize-cli db:migrate",
+    "postinstall": "bower install"
   },
   "author": "",
   "license": "ISC",
