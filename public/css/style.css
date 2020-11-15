@@ -1,0 +1,26 @@
+* {
+  font-family: 'Roboto', sans-serif; 
+  font-size: 14px;
+}
+#form-log,
+#bdy,
+#form-reg {
+  width: 40%;
+  margin: auto;
+}
+#container {
+  height:75vh;
+  padding-top:5%;
+}
+.navc{
+ 
+  -webkit-box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+     -moz-box-shadow:  0 2px 4px 0 rgba(0,0,0,.2);
+     box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+  }
+.nav-sub {
+  font-weight:bold;
+}
+.footer {
+  font-size: 12px;
+}

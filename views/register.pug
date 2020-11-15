@@ -1,0 +1,17 @@
+extends layout
+
+block content
+ card
+  card-body
+    form.text-center#form-reg.border.border-medium.p-5
+      p.h4.mb-4 Sign up
+      input#name.form-control.mb-4(type='text' placeholder='Name')
+      input#email.form-control.mb-4(type='email' placeholder='Email')
+      input#password.form-control(type='password' placeholder='Password')
+      button#btnn.btn.btn-info.my-4.btn-block(type='button') Sign up
+      hr
+      p
+        | By clicking em Sign up
+        br
+        | you agree to our 
+        a(href='' target='_blank') terms of service
