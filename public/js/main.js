@@ -4,6 +4,7 @@ $(document).ready(function(){
     console.log('click');
     var email = $("#email").val();
     var pass = $("#password").val();
+    var name = $("#name").val();
     console.log(email,pass)
     $target = $(e.target);
     e.preventDefault();
@@ -11,7 +12,7 @@ $(document).ready(function(){
       type:'POST',
       url: '/register',
       contentType: "application/json;charset=utf-8",
-      data:JSON.stringify({ email:email, password:pass }),
+      data:JSON.stringify({ name:name, email:email, password:pass }),
       async: true,
       dataType: 'json',
       success: function(response){
@@ -19,22 +20,25 @@ $(document).ready(function(){
         if (response.status === 'success'){
           $.ajax({
             type:'POST',
-            url: 'http://localhost:5000/api/centralauth/CASUsers/enrollUser?group',
-            contentType: "application/json;charset=utf-8",
+            url: 'http://localhost:5000/api/centralauth/CASUsers/enrollUser',
             headers:{"X-ClientSecret": 'c7d39451-85b1-4e68-a697-6bfec4ee7280' },
             contentType: "application/json;charset=utf-8",
             data:JSON.stringify({user_id:email, grp_id:5}),
             success: function(response){
-             console.log(response)
+             console.log(response.message)
+             if(response.message === 'success'){
+               console.log('successful')
+               location.href = "/dashboard"
+             }
             },
             error: function(err){
-              console.log(err);
+              location.href = "/dashboard"
             }
           });
         }
       },
       error: function(err){
-        console.log(err);
+        location.href = "/dashboard"
       }
     });
   });

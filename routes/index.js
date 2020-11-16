@@ -13,6 +13,11 @@ router.get('/register', async (req, res)=>{
   res.render('register');
 });
 
+router.get('/dashboard', async (req, res)=>{
+  console.log('l')
+  res.render('dashboard');
+});
+
 router.post('/register', async (req, res)=>{
   console.log('pp');  const {
      email,
