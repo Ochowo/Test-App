@@ -38,7 +38,7 @@ $(document).ready(function(){
         }
       },
       error: function(err){
-        location.href = "/dashboard"
+        location.href = "/error"
       }
     });
   });
