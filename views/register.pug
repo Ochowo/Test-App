@@ -12,9 +12,12 @@ block content
       input#password.form-control(type='password' placeholder='Password')
       p#pas-err.error.text-danger.mb-1
       button#btnn.btn.btn-info.my-5.btn-block(type='button') Sign up
+      .spinner-border#spinner.text-center(style='display: none')
+        span.sr-only Loading...
       hr
       p
         | By clicking em Sign up
+        
         br
         | you agree to our 
         a(href='' target='_blank') terms of service

@@ -2,11 +2,18 @@
 $(document).ready(function(){
   console.log('peep')
   
+     $(document).ajaxStart(function(){
+      $("#spinner").css("display", "block");
+    }); 
+    $(document).ajaxComplete(function(){
+      $("#spinner").css("display", "none");
+    });
   // var errMsg = localStorage.getItem("conflict-register");
   // $('#err-msg').text(errMsg);
   // var pp = $('#err-msg')
   // pp.html = errMsg != null ? errMsg : 'An error has occured';
   $('#btnn').on('click', function(e){
+    //$("#spinner").css("display", "block");
     console.log('click');
     var email = $("#email").val();
     var pass = $("#password").val();
