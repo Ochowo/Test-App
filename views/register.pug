@@ -5,10 +5,13 @@ block content
   card-body
     form.text-center#form-reg.border.border-medium.p-5
       p.h4.mb-4 Sign up
-      input#name.form-control.mb-4(type='text' placeholder='Name')
-      input#email.form-control.mb-4(type='email' placeholder='Email')
+      p#con-err.error.text-danger
+      input#name.form-control(type='text' placeholder='Name')
+      input#email.form-control.mt-4(type='email' placeholder='Email')
+      p#em-err.error.text-danger.mb-4
       input#password.form-control(type='password' placeholder='Password')
-      button#btnn.btn.btn-info.my-4.btn-block(type='button') Sign up
+      p#pas-err.error.text-danger.mb-1
+      button#btnn.btn.btn-info.my-5.btn-block(type='button') Sign up
       hr
       p
         | By clicking em Sign up
