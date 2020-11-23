@@ -1,7 +1,7 @@
   
 $(document).ready(function(){
   console.log('peep')
-  
+
      $(document).ajaxStart(function(){
       $("#spinner").css("display", "block");
     }); 
@@ -42,33 +42,43 @@ $(document).ready(function(){
       success: function(response){
         console.log(response, 'dd');
         if (response.status === 'success'){
-          console.log('hhh');
-          localStorage.setItem('token', response.token);
-          $.ajax({
-            type:'POST',
-            url: 'http://localhost:5000/api/centralauth/CASUsers/enrollUser',
-            headers:{"X-ClientSecret": 'c7d39451-85b1-4e68-a697-6bfec4ee7280' },
-            contentType: "application/json;charset=utf-8",
-            data:JSON.stringify({user_id:email, grp_id:5}),
-            success: function(response){
-             console.log(response.message)
-             if(response.message === 'success'){
-               console.log('successful')
-               location.href = "/dashboard"
-             }
-            },
-            error: function(err){
-              console.log(err);
-              //location.href = "/dashboard"
-            }
-          });
+          
+    return location.href = "/dashboard"
+      // //     console.log('success')
+      // //     // var dateObj = new Date();
+      // //     // var formatedDate = dateObj.toISOString().replace('-', '').replace('-', '').replace(':', '').replace(':', '').replace('Z', '').replace('T', '');
+      // //     // var newd = formatedDate.split('.')[0];
+      // //     // var appKey = 'c7d39451-85b1-4e68-a697-6bfec4ee7280';
+      // //     // var pas = 'password123';
+      // //     // var encrypted = CryptoJS.SHA256(appKey+'_'+newd+'_'+pas)
+        
+      // // //     $.ajax({
+      // // //       type:'POST',
+      // // //       url: 'http://localhost:5000/api/centralauth/CASUsers/enrollUser',
+      // // //       headers:{'client': 'c7d39451-85b1-4e68-a697-6bfec4ee7280', 'timestamp': newd, 'apikey': encrypted },
+      // // //       data:JSON.stringify({user_id:email, grp_id:5}),
+      // // //       async: true,
+      // // //       dataType: 'json',
+            
+      // // // contentType: "application/json;charset=utf-8",
+      // // //       success: function(response){
+      // // //        console.log(response.message)
+      // // //        if(response.message === 'success'){
+      // // //          console.log('successful')
+      // // //          location.href = "/dashboard"
+      // // //        }
+      // // //       },
+      // //     //   error: function(err){
+      // //     //     console.log(err);
+      // //     //     //location.href = "/dashboard"
+      // //     //   }
+      // //     // });
         
         }
       },
       error: function(err){
        // localStorage.setItem("conflict-register", err.responseJSON.message);
-        console.log(err.responseJSON.message, 'ppp')
-        $('#con-err').text(err.responseJSON.message);   
+        console.log(err, 'ppp')
       }
     });
   

@@ -1,3 +1,4 @@
+const  sha256  =  require('js-sha256');
 const express = require('express');
 const router = express.Router();
 const database = require('../models');
@@ -49,13 +50,24 @@ router.post('/register', async (req, res)=>{
     });
     
     if (created) {
-      console.log('new');
-     var token = generateToken(user.email);
-     res.cookie("token", token); 
+      var dateObj = new Date();
+      var formatedDate = dateObj.toISOString().replace('-', '').replace('-', '').replace(':', '').replace(':', '').replace('Z', '').replace('T', '');
+      var newd = formatedDate.split('.')[0];
+      var appKey = 'c7d39451-85b1-4e68-a697-6bfec4ee7280';
+      var pas = 'password123';
+      var encrypted = sha256(appKey+'_'+newd+'_'+pas)
+      console.log('new', user, encrypted);
+      var rou = 'http://localhost:5000/api/centralauth/CASUsers/enrollUser';
+    var route = rou.replace(/\s/g, "")
+    var response = await axios({
+      method: 'post',
+      url: rou,
+      headers:{'client': 'c7d39451-85b1-4e68-a697-6bfec4ee7280', 'timestamp': newd, 'apikey': encrypted },
+      data: {user_id:email, grp_id:5}
+    });
       return res.status(201).json({
         status: 'success',
-        userId: email,
-        token: token,
+        userId: email
       });
     }
      return res.status(409).json({
@@ -88,25 +100,22 @@ router.post('/auth/login', async (req, res)=>{
     });
     console.log(user)
     if(!user){
-      res.render('error');
+      res.render('error', user);
       return res.status(401).json({
         status: 'failed',
         message: 'User does not exist',
       });
     }
     if (user.comparePassword(passType, user)) {
-      var persistEmail = user.email
-      req.user = { persistEmail };
-      const tokennp = generateToken(user.id, user.email);
-      const data = { user, tokennp };
-      var tokemmn = generateToken(user.email);
-      res.cookie("token", tokemmn); 
+      console.log(user, 'error9')
+      const data = { user };
       return res.status(200).json({
         status: 'success',
         message: 'success',
         data:  data,
       });
     } 
+    console.log(user, 'error3')
     return res.status(401).json({
       status: 'failed',
       message: 'Invalid credentials',
@@ -126,13 +135,19 @@ router.get('/login/success', async (req, res)=>{
   const {
      token
     } = req.query;
+    var dateObj = new Date();
+          var formatedDate = dateObj.toISOString().replace('-', '').replace('-', '').replace(':', '').replace(':', '').replace('Z', '').replace('T', '');
+          var newd = formatedDate.split('.')[0];
+          var appKey = 'c7d39451-85b1-4e68-a697-6bfec4ee7280';
+          var pas = 'password123';
+          var encrypted = CryptoJS.SHA256(appKey+'_'+newd+'_'+pas)
   try {
     var rou = 'http://localhost:5000/api/centralauth/CASUsers/confirmUser?token='+token;
     var route = rou.replace(/\s/g, "")
     var response = await axios({
       method: 'get',
       url: rou,
-      headers:{'X-ClientSecret': 'c7d39451-85b1-4e68-a697-6bfec4ee7280' }
+      headers:{'client': 'c7d39451-85b1-4e68-a697-6bfec4ee7280', 'timestamp': newd, 'apikey': encrypted }
     });
   if(response.data.message === 'success'){
     res.redirect('/dashboard')
@@ -148,5 +163,6 @@ router.get('/login/success', async (req, res)=>{
   }
 
 });
+
 
 module.exports = router;
