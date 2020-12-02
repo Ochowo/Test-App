@@ -30,17 +30,21 @@ router.post('/signup', async (req, res) => {
       var appKey = 'c7d39451-85b1-4e68-a697-6bfec4ee7280';
       var pas = 'password123';
       var encrypted = sha256(appKey+'_'+newd+'_'+pas)
-      
+      var rou = "http://localhost:5000/api​/centralauth​/CASUsers​/enrollUser"
     await axios({
       method: 'post',
       url: rou,
       headers:{'client': 'c7d39451-85b1-4e68-a697-6bfec4ee7280', 'timestamp': newd, 'apikey': encrypted },
       data: {user_id:email, grp_id:2}
-    });
+    }).then((response) => {
       return res.status(201).json({
         status: 'success',
         userId: email
       });
+    }, (error) => {
+      console.log(error);
+    });
+    
 })
 router.post('/register', async (req, res)=>{
   const {
