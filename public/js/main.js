@@ -30,7 +30,7 @@ $(document).ready(function(){
       async: true,
       dataType: 'json',
       success: function(response){
-        console.log(response, 'dd');
+        console.log(response, 'ddr');
         if (response.status === 'success'){
           
     return location.href = "/dashboard"
@@ -38,7 +38,7 @@ $(document).ready(function(){
         }
       },
       error: function(err){
-        console.log(err.responseJSON)
+        console.log(err, '<><><>err')
        if(err.responseJSON.message == 'User already exist'){
         $('#em-err').text('User already exist');
        } else {
