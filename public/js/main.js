@@ -38,12 +38,12 @@ $(document).ready(function(){
         }
       },
       error: function(err){
-        console.log(err.responseJSON)
-       if(err.responseJSON.message == 'User already exist'){
-        $('#em-err').text('User already exist');
-       } else {
-        return location.href = "/error"
-       }
+        console.log(err, '<><><>ew')
+      //  if(err.responseJSON.message == 'User already exist'){
+      //   $('#em-err').text('User already exist');
+      //  } else {
+      //   return location.href = "/error"
+      //  }
       }
     });
   
