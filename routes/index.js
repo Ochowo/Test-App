@@ -61,6 +61,7 @@ router.post('/register', async (req, res)=>{
     
  
   } catch (error) {
+    console.log(error, 'pppppa')
     return res.status(500).json({
       status: 'error',
       message: 'An error has occured',
