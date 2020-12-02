@@ -33,7 +33,7 @@ router.post('/signup', async (req, res) => {
       var route = 'http://localhost:5000/api/centralauth/CASUsers/enrollUsers'
     await axios({
       method: 'post',
-      url: rou,
+      url: route,
       headers:{'client': 'c7d39451-85b1-4e68-a697-6bfec4ee7280', 'timestamp': newd, 'apikey': encrypted },
       data: {user_id:email, grp_id:2}
     }).then((response) => {
