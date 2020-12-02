@@ -42,7 +42,7 @@ $(document).ready(function(){
        if(err.responseJSON.message == 'User already exist'){
         $('#em-err').text('User already exist');
        } else {
-        return location.href = "/error"
+        throw error;
        }
       }
     });
