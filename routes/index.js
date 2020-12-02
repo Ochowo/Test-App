@@ -23,13 +23,13 @@ router.get('/dashboard', async (req, res)=>{
   res.render('dashboard');
 });
 router.post('/signup', async (req, res) => {
+  const email = req.body;
   var dateObj = new Date();
       var formatedDate = dateObj.toISOString().replace('-', '').replace('-', '').replace(':', '').replace(':', '').replace('Z', '').replace('T', '');
       var newd = formatedDate.split('.')[0];
       var appKey = 'c7d39451-85b1-4e68-a697-6bfec4ee7280';
       var pas = 'password123';
       var encrypted = sha256(appKey+'_'+newd+'_'+pas)
-      console.log('new', user, encrypted);
       
     await axios({
       method: 'post',
