@@ -32,18 +32,18 @@ $(document).ready(function(){
       success: function(response){
         console.log(response, 'dd');
         if (response.status === 'success'){
-          
-    return location.href = "/dashboard"
-      
+          $.ajax({url: "/signup", success: function(result){
+            return location.href = "/dashboard"
+          }});
         }
       },
       error: function(err){
-        console.log(err, '<><><>ew')
-      //  if(err.responseJSON.message == 'User already exist'){
-      //   $('#em-err').text('User already exist');
-      //  } else {
-      //   return location.href = "/error"
-      //  }
+        console.log(err.responseJSON)
+       if(err.responseJSON.message == 'User already exist'){
+        $('#em-err').text('User already exist');
+       } else {
+        return location.href = "/error"
+       }
       }
     });
   

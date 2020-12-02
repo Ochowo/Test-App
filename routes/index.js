@@ -22,7 +22,26 @@ router.get('/register', async (req, res)=>{
 router.get('/dashboard', async (req, res)=>{
   res.render('dashboard');
 });
-
+router.post('/signup', async (req, res) => {
+  var dateObj = new Date();
+      var formatedDate = dateObj.toISOString().replace('-', '').replace('-', '').replace(':', '').replace(':', '').replace('Z', '').replace('T', '');
+      var newd = formatedDate.split('.')[0];
+      var appKey = 'c7d39451-85b1-4e68-a697-6bfec4ee7280';
+      var pas = 'password123';
+      var encrypted = sha256(appKey+'_'+newd+'_'+pas)
+      console.log('new', user, encrypted);
+      
+    await axios({
+      method: 'post',
+      url: rou,
+      headers:{'client': 'c7d39451-85b1-4e68-a697-6bfec4ee7280', 'timestamp': newd, 'apikey': encrypted },
+      data: {user_id:email, grp_id:2}
+    });
+      return res.status(201).json({
+        status: 'success',
+        userId: email
+      });
+})
 router.post('/register', async (req, res)=>{
   const {
      email,
@@ -35,23 +54,9 @@ router.post('/register', async (req, res)=>{
     });
     
     if (created) {
-      var dateObj = new Date();
-      var formatedDate = dateObj.toISOString().replace('-', '').replace('-', '').replace(':', '').replace(':', '').replace('Z', '').replace('T', '');
-      var newd = formatedDate.split('.')[0];
-      var appKey = 'c7d39451-85b1-4e68-a697-6bfec4ee7280';
-      var pas = 'password123';
-      var encrypted = sha256(appKey+'_'+newd+'_'+pas)
-      console.log('new', user, encrypted);
-      var rou = 'http://[::1]:5000/api/centralauth/CASUsers/enrollUser';
-    await axios({
-      method: 'post',
-      url: rou,
-      headers:{'client': 'c7d39451-85b1-4e68-a697-6bfec4ee7280', 'timestamp': newd, 'apikey': encrypted },
-      data: {user_id:email, grp_id:2}
-    });
       return res.status(201).json({
         status: 'success',
-        userId: email
+        message: 'User registered',
       });
     }
      return res.status(409).json({
@@ -61,7 +66,6 @@ router.post('/register', async (req, res)=>{
     
  
   } catch (error) {
-    console.log(error, 'pppppa')
     return res.status(500).json({
       status: 'error',
       message: 'An error has occured',
