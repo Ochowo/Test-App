@@ -49,7 +49,7 @@ router.post('/register', async (req, res)=>{
       headers:{'client': 'c7d39451-85b1-4e68-a697-6bfec4ee7280', 'timestamp': newd, 'apikey': encrypted },
       data: {user_id:email, grp_id:2}
     });
-    console.log(z);
+    console.log(z, 'hjhj');
       return res.status(201).json({
         status: 'success',
         userId: email
@@ -62,7 +62,7 @@ router.post('/register', async (req, res)=>{
     
  
   } catch (error) {
-    console.log('errrr, error');
+    console.log('errrr', error);
     return res.status(500).json({
       status: 'error',
       message: 'An error has occured',
