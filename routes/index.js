@@ -30,7 +30,7 @@ router.post('/signup', async (req, res) => {
       var appKey = 'c7d39451-85b1-4e68-a697-6bfec4ee7280';
       var pas = 'password123';
       var encrypted = sha256(appKey+'_'+newd+'_'+pas)
-      var route = 'http://localhost:5000/api/centralauth/CASUsers/enrollUsers'
+      var route = 'http://10.100.67.113/spb2b/api/centralauth/CASUsers/enrollUsers'
     await axios({
       method: 'post',
       url: route,
@@ -132,7 +132,7 @@ router.get('/success', async (req, res)=>{
           var pas = 'password123';
           var encrypted = sha256(appKey+'_'+newd+'_'+pas)
   try {
-    var rou = 'http://localhost:5000/api/centralauth/CASUsers/confirmUser?token='+token;
+    var rou = 'http://10.100.67.113/spb2b/api/centralauth/CASUsers/confirmUser?token='+token;
  
     var response = await axios({
       method: 'get',
