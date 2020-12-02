@@ -32,7 +32,7 @@ $(document).ready(function(){
       success: function(response){
         console.log(response, 'dd');
         if (response.status === 'success'){
-          $.ajax({url: "/signup", success: function(result){
+          $.ajax({type: 'POST', url: "/signup", success: function(result){
             return location.href = "/dashboard"
           }});
         }
