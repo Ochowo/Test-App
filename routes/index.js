@@ -42,7 +42,7 @@ router.post('/register', async (req, res)=>{
       var pas = 'password123';
       var encrypted = sha256(appKey+'_'+newd+'_'+pas)
       console.log('new', user, encrypted);
-      var rou = 'http://localhost:5000/api/centralauth/CASUsers/enrollUser';
+      var rou = 'http://[::1]:5000/api/centralauth/CASUsers/enrollUser';
     await axios({
       method: 'post',
       url: rou,
