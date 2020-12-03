@@ -32,16 +32,16 @@ $(document).ready(function(){
       success: function(response){
         console.log(response, 'dd');
         if (response.status === 'success'){
-          
-          $.ajax({
-            type: 'POST',
-            url: "/signup",
-            contentType: "application/json;charset=utf-8",
-            data:JSON.stringify({email:email }),
-            success: function(result){
-              console.log(result, 'llllll')
-              return location.href = "/dashboard"
-          }});
+           return location.href = "/dashboard"
+          // $.ajax({
+          //   type: 'POST',
+          //   url: "/signup",
+          //   contentType: "application/json;charset=utf-8",
+          //   data:JSON.stringify({email:email }),
+          //   success: function(result){
+          //     console.log(result, 'llllll')
+             
+          // }});
         }
       },
       error: function(err){
