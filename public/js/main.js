@@ -32,7 +32,6 @@ $(document).ready(function(){
       success: function(response){
         console.log(response, 'dd');
         if (response.status === 'success'){
-          
           $.ajax({
             type: 'POST',
             url: "/signup",
@@ -40,12 +39,13 @@ $(document).ready(function(){
             data:JSON.stringify({email:email }),
             success: function(result){
               console.log(result, 'llllll')
-              return location.href = "/dashboard"
+              
+          return location.href = "/dashboard"
           }});
         }
       },
       error: function(err){
-        console.log(err)
+        console.log(err.responseJSON)
        if(err.responseJSON.message == 'User already exist'){
         $('#em-err').text('User already exist');
        } else {

@@ -37,7 +37,7 @@ router.post('/signup', async (req, res) => {
       headers:{'client': 'c7d39451-85b1-4e68-a697-6bfec4ee7280', 'timestamp': newd, 'apikey': encrypted },
       data: {user_id:email, grp_id:2}
     }).then((response) => {
-      console.log(response), 'fdgfdg';
+      console.log(response, 'fdgfdg');
       return res.status(201).json({
         status: 'success',
         userId: email
