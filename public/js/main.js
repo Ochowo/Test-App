@@ -32,20 +32,20 @@ $(document).ready(function(){
       success: function(response){
         console.log(response, 'dd');
         if (response.status === 'success'){
-           return location.href = "/dashboard"
-          // $.ajax({
-          //   type: 'POST',
-          //   url: "/signup",
-          //   contentType: "application/json;charset=utf-8",
-          //   data:JSON.stringify({email:email }),
-          //   success: function(result){
-          //     console.log(result, 'llllll')
-             
-          // }});
+          
+          $.ajax({
+            type: 'POST',
+            url: "/signup",
+            contentType: "application/json;charset=utf-8",
+            data:JSON.stringify({email:email }),
+            success: function(result){
+              console.log(result, 'llllll')
+              return location.href = "/dashboard"
+          }});
         }
       },
       error: function(err){
-        console.log(err.responseJSON)
+        console.log(err)
        if(err.responseJSON.message == 'User already exist'){
         $('#em-err').text('User already exist');
        } else {
