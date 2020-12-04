@@ -27,14 +27,14 @@ router.post('/signup', async (req, res) => {
   var dateObj = new Date();
       var formatedDate = dateObj.toISOString().replace('-', '').replace('-', '').replace(':', '').replace(':', '').replace('Z', '').replace('T', '');
       var newd = formatedDate.split('.')[0];
-      var appKey = 'c7d39451-85b1-4e68-a697-6bfec4ee7280';
+      var appKey = 'eb910841-39ae-41b1-a9ee-e1757a6ae9cc';
       var pas = 'password123';
       var encrypted = sha256(appKey+'_'+newd+'_'+pas)
       var route = 'http://10.100.67.113/spb2b/api/centralauth/CASUsers/enrollUsers'
     await axios({
       method: 'post',
       url: route,
-      headers:{'client': 'c7d39451-85b1-4e68-a697-6bfec4ee7280', 'timestamp': newd, 'apikey': encrypted },
+      headers:{'client': 'eb910841-39ae-41b1-a9ee-e1757a6ae9cc', 'timestamp': newd, 'apikey': encrypted },
       data: {user_id:email, grp_id:2}
     }).then((response) => {
       console.log(response, 'fdgfdg');
@@ -129,7 +129,7 @@ router.get('/success', async (req, res)=>{
     var dateObj = new Date();
           var formatedDate = dateObj.toISOString().replace('-', '').replace('-', '').replace(':', '').replace(':', '').replace('Z', '').replace('T', '');
           var newd = formatedDate.split('.')[0];
-          var appKey = 'c7d39451-85b1-4e68-a697-6bfec4ee7280';
+          var appKey = 'eb910841-39ae-41b1-a9ee-e1757a6ae9cc';
           var pas = 'password123';
           var encrypted = sha256(appKey+'_'+newd+'_'+pas)
   try {
